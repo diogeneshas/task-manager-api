@@ -1,6 +1,7 @@
 require "api_version_constraint"
 
 Rails.application.routes.draw do
+  devise_for :users
   namespace :api,
             defaults: {
               format: :json
