@@ -15,6 +15,7 @@ Rails.application.routes.draw do
               constraints:
                 ApiVersionConstraint.new(version: 1, default: true) do
       resources :tasks
+      resources :users
     end
   end
 end
