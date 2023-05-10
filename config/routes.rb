@@ -1,7 +1,7 @@
 require "api_version_constraint"
 
 Rails.application.routes.draw do
-  # devise_for :users
+  devise_for :users
   namespace :api,
             defaults: {
               format: :json
@@ -14,7 +14,7 @@ Rails.application.routes.draw do
               path: "/",
               constraints:
                 ApiVersionConstraint.new(version: 1, default: true) do
-      resources :tasks
+      resources :sessions, only: %i[create destroy]
       resources :users
     end
   end
