@@ -16,6 +16,7 @@ Rails.application.routes.draw do
                 ApiVersionConstraint.new(version: 1, default: true) do
       resources :sessions, only: %i[create destroy]
       resources :users
+      resources :tasks
     end
   end
 end
