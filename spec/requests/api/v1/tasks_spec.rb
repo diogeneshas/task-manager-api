@@ -123,4 +123,18 @@ RSpec.describe "Task API", type: :request do
     end
   end
 
+  describe "DELETE /tasks/:id" do
+    let!(:task) { create(:task, user_id: user.id) }
+    before { delete "/tasks/#{task.id}", params: {}, headers: headers }
+
+    it "returns status code 204" do
+      expect(response).to have_http_status(204)
+    end
+
+    it "deletes the task from the database" do
+      expect { Task.find(task.id) }.to raise_error(ActiveRecord::RecordNotFound)
+      expect(Task.find_by(id: task.id)).to be_nil
+    end
+  end
+
 end
