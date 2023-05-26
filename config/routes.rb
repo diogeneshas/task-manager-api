@@ -1,7 +1,8 @@
 require "api_version_constraint"
 
 Rails.application.routes.draw do
-  devise_for :users
+  mount_devise_token_auth_for 'User', at: 'auth'
+  # devise_for :users
   namespace :api,
             defaults: {
               format: :json
